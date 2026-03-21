@@ -65,6 +65,11 @@
       "id": "insert-template",
       "name": "Шаблоны: Вставить шаблон",
       "icon": "lucide-copy"
+    },
+    {
+      "id": "canvas:new-file",
+      "name": "Холст: Создать новый холст",
+      "icon": "lucide-layout-dashboard"
     }
   ],
   "appendMethod": "workspace",
