@@ -22,3 +22,4 @@ LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
 // Отмена
 LocalBroadcastManager.getInstance(context).unregisterReceiver(myReceiver)
 ```
+

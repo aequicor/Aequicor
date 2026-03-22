@@ -67,9 +67,9 @@
       "icon": "lucide-copy"
     },
     {
-      "id": "canvas:new-file",
-      "name": "Холст: Создать новый холст",
-      "icon": "lucide-layout-dashboard"
+      "id": "drawio-obsidian:create-new-diagram",
+      "name": "Diagrams: Create a new diagram",
+      "icon": "add-note-glyph"
     }
   ],
   "appendMethod": "workspace",
