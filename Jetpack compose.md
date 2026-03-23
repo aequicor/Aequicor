@@ -113,3 +113,4 @@ composeCompiler {
     reportsDestination.set(metricsDir)
 }
 ```
+ далее удаляем папку build модуля и вызываем град таску `./gradlew :модуль где добавлены:assable` или просто собираем проект. Открываем файл с суффиксом `-classes.text` и смотрим что все классы отмечены как stable 
