@@ -54,3 +54,51 @@ composeCompiler {
 
 
 Отмечу, что strong skipping mode не является панацеей, и не отменяет использование @Immutable. Он просто добавляет сравнение по ссылкам.
+
+### Compose Compiler Configuration
+
+Конфигурация позволяет пометить классы внутри пакета как стабильными без использования аннотаций. 
+
+Настройка конфигурации: 
+1) создание файла в корне проекта `compose_compiler_config.conf`
+2) заполнение файла классами и пакетами которые стабильные, например: 
+```kotlin
+// 1. Делаем стабильными все классы в домене твоего проекта
+com.missionchat.domain.models.*
+
+// 2. Делаем стабильными классы из стандартной библиотеки Kotlin
+// (Полезно, если используешь обычные List/Set/Map и берешь ответственность за их неизменяемость)
+kotlin.collections.*
+
+// 3. Стандартные классы Java/Kotlin для работы со временем
+java.time.LocalDateTime
+java.time.LocalDate
+java.time.ZoneId
+
+// 4. Можно указать конкретный класс, если не хочешь открывать весь пакет
+com.example.thirdparty.SomeSpecificModel
+```
+3) настроить `composeCompiler { }` во всех gradle файлах с compose плагином: 
+```kotlin
+plugins {
+    // ...
+    id("org.jetbrains.kotlin.plugin.compose") 
+}
+
+// Конфигурация нового компилятора Compose
+composeCompiler {
+  //...
+stabilityConfigurationFiles.add(project.layout.projectDirectory.file("compose_compiler_config.conf"))
+}
+```
+или можно применить только в корневом градл файле, только если проект не использует конвеншен плагины 
+```kotlin
+// Корневой build.gradle.kts
+subprojects {
+    plugins.withId("org.jetbrains.kotlin.plugin.compose") {
+        composeCompiler {
+stabilityConfigurationFiles.add(project.layout.projectDirectory.file("compose_compiler_config.conf"))
+        }
+    }
+}
+```
