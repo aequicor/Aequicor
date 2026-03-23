@@ -2,5 +2,8 @@
   "promptDelete": false,
   "attachmentFolderPath": "99_Attachments",
   "newLinkFormat": "relative",
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "spellcheckDictionary": [
+    "рекомпозиции"
+  ]
 }
