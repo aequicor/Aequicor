@@ -88,7 +88,7 @@ plugins {
 // Конфигурация нового компилятора Compose
 composeCompiler {
   //...
-stabilityConfigurationFiles.add(project.layout.projectDirectory.file("compose_compiler_config.conf"))
+stabilityConfigurationFiles.add(rootProject.layout.projectDirectory.file("compose_compiler_config.conf"))
 }
 ```
 или можно применить только в корневом градл файле, только если проект не использует конвеншен плагины 
@@ -100,5 +100,16 @@ subprojects {
 stabilityConfigurationFiles.add(project.layout.projectDirectory.file("compose_compiler_config.conf"))
         }
     }
+}
+```
+4) чтобы проверить, что конфигурация сработала нужно использовать Compose Compiler MetricsЮ которые включаются аналогично через gradle: 
+```kotlin
+composeCompiler {
+	//...
+	
+    // Папка, куда компилятор сложит отчеты
+    val metricsDir = project.layout.buildDirectory.dir("compose_metrics")
+    metricsDestination.set(metricsDir)
+    reportsDestination.set(metricsDir)
 }
 ```
